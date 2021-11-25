@@ -5,6 +5,12 @@ print(pyautogui.KEYBOARD_KEYS)
 
 #####
 
+#####스크래핑
+#####
+
+#####문자열 전처리
+#####
+
 ###
 pyautogui.press('winleft')
 #
@@ -18,11 +24,12 @@ for i in range(13) :
     pyautogui.press('tab')
 pyautogui.hotkey('ctrl','v')
 #
-for i in range(2) :
-    pyautogui.press('tab')
-pyautogui.press('enter')
+time.sleep(3)
+pyautogui.hotkey('ctrl','enter')
 #
-pyautogui.press('tab')
+time.sleep(20)
+for i in range(4) :
+    pyautogui.press('tab')
 pyautogui.hotkey('ctrl','a')
 #
 pyautogui.press('ctrl','v')
@@ -30,8 +37,6 @@ pyautogui.press('ctrl','v')
 
 
 
-#####문자열 처리
-
-#(1) 대괄호 등 제거 : 위키피디아용 제거
+#####export & save in hangeul
 
 #####
