@@ -1,8 +1,13 @@
 #####
 import pyautogui
 import time
-print(pyautogui.KEYBOARD_KEYS)
+#
+import md1_userInput
 
+#####
+
+#####사용자 입력
+input("give me keyword :")
 #####
 
 #####스크래핑
@@ -11,12 +16,14 @@ print(pyautogui.KEYBOARD_KEYS)
 #####문자열 전처리
 #####
 
+#####패러프레이징
 ###
 pyautogui.press('winleft')
 #
+time.sleep(0.4)
 pyautogui.typewrite('quillbot',interval=0.1)
 pyautogui.press('enter')
-time.sleep(4)
+time.sleep(6)
 ###
 
 ###
@@ -35,7 +42,15 @@ pyautogui.hotkey('ctrl','a')
 pyautogui.press('ctrl','v')
 ###
 
+###
+pyautogui.hotkey('ctrl','t')
+time.sleep(3)
 
+pyautogui.typewrite('www.',interval=0.1)
+pyautogui.press('enter')
+time.sleep(6)
+###
+#####
 
 #####export & save in hangeul
 
