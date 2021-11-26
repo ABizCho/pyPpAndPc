@@ -1,16 +1,29 @@
 #####
 import pyautogui
+import clipboard    #pyautogui를 이용한 타이핑시 한/영 문제 대안으로 os클립보드 제어
 import time
 #
-import md1_userInput
+import mod_myPyAutoGui as PAG
+import proc1_userInput as proc1_input
+
+savedStr = str()
 
 #####
 
 #####사용자 입력
-input("give me keyword :")
+keywords = proc1_input.userInput()
+#
+print(keywords)                 #TEST CODE
+#
+time.sleep(0.5)
 #####
 
+
+
 #####스크래핑
+PAG.win()
+PAG.paste_win('chrome')
+
 #####
 
 #####문자열 전처리
@@ -21,7 +34,10 @@ input("give me keyword :")
 pyautogui.press('winleft')
 #
 time.sleep(0.4)
-pyautogui.typewrite('quillbot',interval=0.1)
+clipboard.copy('quillbot')
+pyautogui.hotkey('ctrl','v')
+time.sleep(0.5)
+#
 pyautogui.press('enter')
 time.sleep(6)
 ###
@@ -39,7 +55,7 @@ for i in range(4) :
     pyautogui.press('tab')
 pyautogui.hotkey('ctrl','a')
 #
-pyautogui.press('ctrl','v')
+pyautogui.hotkey('ctrl','v')
 ###
 
 ###
@@ -54,4 +70,10 @@ time.sleep(6)
 
 #####export & save in hangeul
 
+#####
+
+
+
+##### finish message 
+print("===============The end==================")
 #####
