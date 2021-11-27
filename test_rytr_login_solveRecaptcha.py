@@ -33,5 +33,3 @@
 #     PAG.tab(2)
 #     PAG.enter()
 #     t.sleep(4)
-import pyautogui
-print(pyautogui.KEYBOARD_KEYS)

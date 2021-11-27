@@ -9,7 +9,11 @@ import mod_mainFunc as mf
 import proc1_userInput as proc1_input
 ######
 
-###### 사용자 input
+
+
+
+
+###### PROC1 사용자 input ######
 sessionTopic = input('Type Your Main Topic : ')
 sessionKeyword = []
 for i in range(5) :
@@ -19,11 +23,15 @@ sessionKeyword = "{0}, {1}, {2}, {3}, {4}".format(sessionKeyword[0],sessionKeywo
 print(sessionKeyword)
 
 mf.startMsg()
+#################################
 
-###### ryte
+
+
+
+
+###### PROC2 ryte process #######
 #1. rytr 오픈
 PAG.win()
-t.sleep(0.5)
 PAG.paste_win('rytr')
 
 #2. 기존 세션토픽 삭제
@@ -54,36 +62,47 @@ t.sleep(1.5)
 
 #8.Make contents in rytr doc (repeat 4 time)
 Expand = "Expand"
-for i in range(2) :
+for i in range(4) :
     PAG.paste_in(Expand)
     PAG.tab(13)
     PAG.enter()
-    t.sleep(20)
+    t.sleep(10)
     PAG.enter()
     t.sleep(0.1)
 
-#9.ryte 3 time in the same way as step 8
+
+#9.copy the script
+PAG.select_all()
+PAG.copy()
+script = clipboard.paste
+t.sleep(0.1)
 
 
-#######
+######################################
 
 
+###### PROC3 연관키워드 선별,추출 using NLP ###########
 
+#######################################
 
+###### PROC3 WORD파일 작성 #############
 
+#1. word 오픈 & 새 문서
+PAG.win()
+PAG.paste_in('word')
+PAG.enter()
+t.sleep(4)
 
+PAG.enter()
+t.sleep(0.5)
 
-# savedStr = str()
+#2. 기본 프레임 작성
+frame = ""
 
-# #####
+######################################
 
-# #####사용자 입력
-# keywords = proc1_input.userInput()
-# #
-# print(keywords)                 #TEST CODE
-# #
-# time.sleep(0.5)
-# #####
+mf.finishMsg
+
 
 
 
