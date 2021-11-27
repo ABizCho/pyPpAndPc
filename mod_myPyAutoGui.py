@@ -7,7 +7,14 @@ def win() :
     pyautogui.press('win')
     time.sleep(1)
 
-#PASTE in window menu
+#PASTE in instant empty (short term)
+def paste_in(S) :
+    clipboard.copy(S)
+
+    pyautogui.hotkey('ctrl','v')
+    time.sleep(0.5)
+
+#PASTE in window menu and enter (long term)
 def paste_win(S) :
     clipboard.copy(S)
 
@@ -32,6 +39,29 @@ def search_chrome(S) :
     pyautogui.press('enter')
     time.sleep(4)
 
+###### SIMPLE PRESS & HOTKEY ######
+
 #Enter pressing
 def enter() :
     pyautogui.press('enter')
+
+#Del pressing
+def delete() :
+    pyautogui.press('del')
+
+#Copy simple hotkey
+def copy() :
+    pyautogui.hotkey('')
+
+#Quit(alt f4) simple hotkey
+def quit() :
+    pyautogui.hotkey('')
+
+#Select All charactors simple hotkey
+def select_all() :
+    pyautogui.hotkey('ctrl','a')
+
+##########################
+
+
+
