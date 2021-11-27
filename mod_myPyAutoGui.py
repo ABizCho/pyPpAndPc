@@ -23,7 +23,7 @@ def tab(n) :
         time.sleep(0.05)
         pyautogui.press('tab')
 
-#PASTE in chrome
+#PASTE a string in chrome
 def search_chrome(S) :
     clipboard.copy(S)
 
@@ -31,3 +31,7 @@ def search_chrome(S) :
     time.sleep(0.5)
     pyautogui.press('enter')
     time.sleep(4)
+
+#Enter pressing
+def enter() :
+    pyautogui.press('enter')
