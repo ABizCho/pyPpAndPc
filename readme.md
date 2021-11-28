@@ -1,1 +1,1 @@
-This project is planned to make a program paraphrasing numerous text based contents and checking plagiarism about the contents repeatedly.
+This project is planned to make a program writting various script or contents based on some user' keywords, Automatically, by utilizing pyautogui, some AI services and libraries like rytr, tensorflow, and nltk.  
