@@ -60,7 +60,7 @@ custom_kw_extractor = yake.KeywordExtractor(lan=language, n=max_ngram_size, dedu
 
 #def
 def makeComparedKeywordList(sessionKwordList) : #input은 main의 sessionKeywordList가 들어갈 예정 (not var 'sessionKeyword')
-    comparedKwordList = list(range(len(sessionKwordList)))
+    comparedKwordList = list()
     
     for skw in range(len(sessionKwordList)) :
         keywords = custom_kw_extractor.extract_keywords(sessionKwordList[skw])

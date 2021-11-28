@@ -7,6 +7,9 @@ import datetime
 import mod_myPyAutoGui as PAG
 import mod_mainFunc as mf
 import proc1_userInput as proc1_input
+
+import mod_choosen_NLP_extractKeyword_yake as ExKeyword
+import mod_choosen_NLP_extractSessionKeyword_yake as ExSessKeyword
 ######
 
 
@@ -15,11 +18,11 @@ import proc1_userInput as proc1_input
 
 ###### PROC1 사용자 input ######
 sessionTopic = input('Type Your Main Topic : ')
-sessionKeyword = []
+sessionKeywordList = [] #사용자에게서 받는 모든 session keyword는 소문자로 작성하거나 / 소문자로 변경해야한다. : 파생원고로부터 연관키워드 선정 시 비교=>중복제거 수행예정
 for i in range(5) :
-    sessionKeyword.append(input('Type Your 5 keywords : '))
+    sessionKeywordList.append(input('Type Your 5 keywords : '))
 
-sessionKeyword = "{0}, {1}, {2}, {3}, {4}".format(sessionKeyword[0],sessionKeyword[1],sessionKeyword[2],sessionKeyword[3],sessionKeyword[4])
+sessionKeyword = "{0}, {1}, {2}, {3}, {4}".format(sessionKeywordList[0],sessionKeywordList[1],sessionKeywordList[2],sessionKeywordList[3],sessionKeywordList[4])
 print(sessionKeyword)
 
 mf.startMsg()
