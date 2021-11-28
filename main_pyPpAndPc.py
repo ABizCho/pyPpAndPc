@@ -1,22 +1,24 @@
 #####
-import pyautogui
 import clipboard    #pyautogui를 이용한 타이핑시 한/영 문제 대안으로 os클립보드 제어
 import time as t
 import datetime
 #
 import mod_myPyAutoGui as PAG
 import mod_mainFunc as mf
-import proc1_userInput as userInput
+import mod_userInput as userInput
 
 import mod_choosen_NLP_extractKeyword_yake as ExKeyword
 import mod_choosen_NLP_extractSessionKeyword_yake as ExSessKeyword
 ######
 
 
-
+#스타트 메시지
+mf.startMsg()
 
 
 ###### PROC1 사용자 input ######
+mf.stepMsg(1,True)
+
 sessionTopic = input('Type Your Main Topic : ')
 sessionKeywordList = [] #사용자에게서 받는 모든 session keyword는 소문자로 작성하거나 / 소문자로 변경해야한다. : 파생원고로부터 연관키워드 선정 시 비교=>중복제거 수행예정
 
@@ -25,11 +27,8 @@ sessionKeyword = userInput.userInput()
 sessionKeyword = "{0}, {1}, {2}, {3}, {4}".format(sessionKeywordList[0],sessionKeywordList[1],sessionKeywordList[2],sessionKeywordList[3],sessionKeywordList[4])
 print(sessionKeyword)
 
-#sessionKeyword 에서 keyword 추출 : 추후 연관키워드 추출 시 비교 및 중복방지를 위해
-ComparedKeywordList = ExSessKeyword.makeComparedKeywordList(sessionKeywordList)
 
-#스타트 메시지
-mf.startMsg()
+mf.stepMsg(1,False)
 #################################
 
 
@@ -37,6 +36,8 @@ mf.startMsg()
 
 
 ###### PROC2 ryte process #######
+mf.stepMsg(2,True)
+
 #1. rytr 오픈
 PAG.win()
 PAG.paste_win('rytr')
@@ -85,15 +86,32 @@ script = clipboard.paste
 t.sleep(0.1)
 
 
+
+mf.stepMsg(2,False)
 ###################################################
 
 
 ###### PROC3 연관키워드 선별,추출 using NLP #########
+mf.stepMsg(3,True)
 
-ExKeyword.keywordExtract_from_AIscript()
+
+ExKw_2dimList = ExKeyword.keywordExtract_from_AIscript(script)
+
+ExSessKw_1dimList = ExSessKeyword.makeComparedKeywordList(sessionKeywordList)
+tmpSessLst = list(ExSessKw_1dimList[:][0])
+
+complement = list(set(tmpSessLst) - set(ExKw_2dimList)) 
+print(complement)
+
+
+
+
+mf.stepMsg(3,False)
 ####################################################
 
-###### PROC3 WORD파일 작성 #############
+###### PROC4 WORD파일 작성 #############
+mf.stepMsg(4,True)
+
 
 #1. word 오픈 & 새 문서
 PAG.win()
@@ -105,15 +123,21 @@ PAG.enter()
 t.sleep(0.5)
 
 #2. 기본 프레임 작성
+    #(1) 
 frame = ""
 
+
+
+mf.stepMsg(4,False)
 ######################################
 
-mf.finishMsg
+
+mf.finishMsg()
 
 
 
 
+#================= Code made for paraphrasing version but discarded =============
 # #####스크래핑
 # PAG.win()
 # PAG.paste_win('chrome')
