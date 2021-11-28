@@ -6,7 +6,7 @@ import datetime
 #
 import mod_myPyAutoGui as PAG
 import mod_mainFunc as mf
-import proc1_userInput as proc1_input
+import proc1_userInput as userInput
 
 import mod_choosen_NLP_extractKeyword_yake as ExKeyword
 import mod_choosen_NLP_extractSessionKeyword_yake as ExSessKeyword
@@ -19,12 +19,16 @@ import mod_choosen_NLP_extractSessionKeyword_yake as ExSessKeyword
 ###### PROC1 사용자 input ######
 sessionTopic = input('Type Your Main Topic : ')
 sessionKeywordList = [] #사용자에게서 받는 모든 session keyword는 소문자로 작성하거나 / 소문자로 변경해야한다. : 파생원고로부터 연관키워드 선정 시 비교=>중복제거 수행예정
-for i in range(5) :
-    sessionKeywordList.append(input('Type Your 5 keywords : '))
+
+sessionKeyword = userInput.userInput()
 
 sessionKeyword = "{0}, {1}, {2}, {3}, {4}".format(sessionKeywordList[0],sessionKeywordList[1],sessionKeywordList[2],sessionKeywordList[3],sessionKeywordList[4])
 print(sessionKeyword)
 
+#sessionKeyword 에서 keyword 추출 : 추후 연관키워드 추출 시 비교 및 중복방지를 위해
+ComparedKeywordList = ExSessKeyword.makeComparedKeywordList(sessionKeywordList)
+
+#스타트 메시지
 mf.startMsg()
 #################################
 
@@ -81,12 +85,13 @@ script = clipboard.paste
 t.sleep(0.1)
 
 
-######################################
+###################################################
 
 
-###### PROC3 연관키워드 선별,추출 using NLP ###########
+###### PROC3 연관키워드 선별,추출 using NLP #########
 
-#######################################
+ExKeyword.keywordExtract_from_AIscript()
+####################################################
 
 ###### PROC3 WORD파일 작성 #############
 

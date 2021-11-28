@@ -1,9 +1,8 @@
-
 def userInput() : 
-    numList = ['first','second','third','fourth','fifth']
+    numList = ['First','Second','Third','Fourth','Fifth']
     inputList = []
 
     for i in range(5) :
-        inputList.append(input("type your {0} keyword : ".format(numList[i])))
-
+        inputList.append(input("Type your {0} keyword : ".format(numList[i])))
+        
     return inputList

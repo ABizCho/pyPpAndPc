@@ -15,5 +15,13 @@ keywords = custom_kw_extractor.extract_keywords(script)
 for kw in keywords:
     print(kw)
 
-print(type(keywords[1]))
-print(keywords[1][1])
+KList = list(map(list,keywords))
+print(KList)
+
+for i in range(len(keywords)) :
+    KList[i][0] = keywords[i][0].lower()
+
+print(KList)
+
+
+# 선정된 연관 키워드 소문자화 필요 : 원고작성에 사용된 session keyword와 비교하여 동일한 키워드는 연관키워드 목록에서 제거 해야하기 때문이다.
