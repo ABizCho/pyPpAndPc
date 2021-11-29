@@ -24,10 +24,10 @@ def keywordExtract_from_AIscript(text) :
 
     for i in range(len(keywords)) :
         
-        #연관성이 0.01 이상인 키워드만생존
-        KList[i][0] = keywords[i][0].lower()
-        if KList[i][1] <= 0.006 :
-            KL.remove(KList[i])
+        # #연관성이 0.01 이상인 키워드만생존
+        # KList[i][0] = keywords[i][0].lower()
+        # if KList[i][1] <= 0.0005 :
+        #     KL.remove(KList[i])
    
         #두 단어의 합성어 키워드만 생존
         sp = ' '
