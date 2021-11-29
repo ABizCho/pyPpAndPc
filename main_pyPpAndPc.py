@@ -2,6 +2,8 @@
 import clipboard    #pyautogui를 이용한 타이핑시 한/영 문제 대안으로 os클립보드 제어
 import time as t
 import datetime
+
+import pyautogui
 #
 import mod_myPyAutoGui as PAG
 import mod_mainFunc as mf
@@ -9,6 +11,7 @@ import mod_userInput as userInput
 
 import mod_choosen_NLP_extractKeyword_yake as ExKeyword
 import mod_choosen_NLP_extractSessionKeyword_yake as ExSessKeyword
+import mod_compAndSample_userKword_Aikword as compAndSampleKword
 ######
 
 
@@ -22,7 +25,7 @@ mf.stepMsg(1,True)
 sessionTopic = input('Type Your Main Topic : ')
 sessionKeywordList = [] #사용자에게서 받는 모든 session keyword는 소문자로 작성하거나 / 소문자로 변경해야한다. : 파생원고로부터 연관키워드 선정 시 비교=>중복제거 수행예정
 
-sessionKeyword = userInput.userInput()
+sessionKeywordList = userInput.userInput()
 
 sessionKeyword = "{0}, {1}, {2}, {3}, {4}".format(sessionKeywordList[0],sessionKeywordList[1],sessionKeywordList[2],sessionKeywordList[3],sessionKeywordList[4])
 print(sessionKeyword)
@@ -66,48 +69,49 @@ t.sleep(0.5)
 
 PAG.paste_in(str(datetime.date.today()))
 PAG.enter()
-t.sleep(1.5)
+t.sleep(3)
 
 #8.Make contents in rytr doc (repeat 4 time)
-Expand = "Expand"
-for i in range(4) :
-    PAG.paste_in(Expand)
+PAG.tab(13)
+PAG.enter()
+t.sleep(8)
+
+PAG.tab(36)
+PAG.enter()
+t.sleep(8)
+
+for i in range(3) :
     PAG.tab(13)
     PAG.enter()
-    t.sleep(10)
-    PAG.enter()
-    t.sleep(0.1)
+    t.sleep(8)
+    # clickCv.clickRyteMore()
+    # t.sleep(8)
 
 
 #9.copy the script
 PAG.select_all()
 PAG.copy()
-script = clipboard.paste
+script = clipboard.paste()
 t.sleep(0.1)
 
-
+PAG.quit()
 
 mf.stepMsg(2,False)
-###################################################
+##################################################
 
 
-###### PROC3 연관키워드 선별,추출 using NLP #########
+##### PROC3 연관키워드 선별,추출 using NLP #########
 mf.stepMsg(3,True)
 
 
-ExKw_2dimList = ExKeyword.keywordExtract_from_AIscript(script)
+ai_related_kword = ExKeyword.keywordExtract_from_AIscript(script) # ai스크립트에서 추출된 연관키워드
+user_kword = ExSessKeyword.makeComparedKeywordList(sessionKeywordList) # 유저인풋 메인키워드
 
-ExSessKw_1dimList = ExSessKeyword.makeComparedKeywordList(sessionKeywordList)
-tmpSessLst = list(ExSessKw_1dimList[:][0])
-
-complement = list(set(tmpSessLst) - set(ExKw_2dimList)) 
-print(complement)
-
-
+sample_5relKW= compAndSampleKword.compKwordAndSample(ai_related_kword,user_kword)
 
 
 mf.stepMsg(3,False)
-####################################################
+###################################################
 
 ###### PROC4 WORD파일 작성 #############
 mf.stepMsg(4,True)
@@ -122,11 +126,41 @@ t.sleep(4)
 PAG.enter()
 t.sleep(0.5)
 
-#2. 기본 프레임 작성
-    #(1) 
-frame = ""
+#2. word작성
+    #헤더
+PAG.paste_in("메인 키워드: {0}".format(sessionKeywordList[0][0].upper() + sessionKeywordList[0][1:]))
+PAG.enter()
+
+PAG.paste_in("제목: {0}".format(sessionTopic))
+PAG.enter()
+
+PAG.paste_in("연관 키워드: {0},{1},{2},{3},{4}".format(sample_5relKW[0],sample_5relKW[1],sample_5relKW[2],sample_5relKW[3],sample_5relKW[4]))
+
+PAG.enter()
+    #본문
+PAG.enter()
+PAG.paste_in(script)
+PAG.enter()
+PAG.enter()
+    #클로징
+closingMent = ["In this article, we dealt with '{0}'.".format(sessionTopic),"Next time, I'll come back with a better article.","Thanks for reading & Warmest regards"]
+for i in range(3) :
+    PAG.paste_in(closingMent[i])
+    pyautogui.press('space')
+    t.sleep(0.1)
+PAG.enter()
 
 
+#3. 저장
+PAG.save()
+
+dateF = datetime.date.today().strftime("%y.%m.%d")
+PAG.paste_in("조성우_영문원고작성({0})_{1}".format(dateF,sessionKeywordList[0]))
+PAG.enter()
+t.sleep(0.5)
+
+PAG.quit()
+t.sleep(0.5)
 
 mf.stepMsg(4,False)
 ######################################

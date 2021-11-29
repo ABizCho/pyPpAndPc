@@ -9,4 +9,4 @@ def stepMsg(stepnum,startORfinish) :
         status = "Start"
     elif startORfinish == False :
         status = "Finished"
-    print('{0} <{1}> process..'.format(stepnum,status))
+    print('<PROC{0}> [{1}] process..'.format(stepnum,status))

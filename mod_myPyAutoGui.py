@@ -19,13 +19,13 @@ def paste_win(S) :
     time.sleep(0.5)
     
     pyautogui.press('enter')
-    time.sleep(6)
+    time.sleep(5)
 
 #TAB key n time
 def tab(n) :
     for i in range(n) :
-        time.sleep(0.05)
         pyautogui.press('tab')
+        time.sleep(0.05)
 
 #PASTE a string in chrome
 def search_chrome(S) :
@@ -62,6 +62,11 @@ def quit() :
 #Select All charactors simple hotkey
 def select_all() :
     pyautogui.hotkey('ctrl','a')
+
+#Save simple hotkey
+def save() :
+    pyautogui.hotkey('ctrl','s')
+    time.sleep(0.8)
 
 ##########################
 
