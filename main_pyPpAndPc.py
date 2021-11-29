@@ -134,7 +134,7 @@ PAG.enter()
 PAG.paste_in("제목: {0}".format(sessionTopic))
 PAG.enter()
 
-PAG.paste_in("연관 키워드: {0},{1},{2},{3},{4}".format(sample_5relKW[0],sample_5relKW[1],sample_5relKW[2],sample_5relKW[3],sample_5relKW[4]))
+PAG.paste_in("연관 키워드: {0}, {1}, {2}, {3}, {4}".format(sample_5relKW[0],sample_5relKW[1],sample_5relKW[2],sample_5relKW[3],sample_5relKW[4]))
 
 PAG.enter()
     #본문
