@@ -4,7 +4,7 @@ However, the program's main functions was replaced with 'AI Writing'.
 <br>
 
 This project made for horiz.d's business.
-<br>
+<br><br>
 
 
 ## Main function
