@@ -1,6 +1,11 @@
-This project is planned to make a program writing various scripts or contents based on some user' keywords, Automatically, by utilizing pyautogui, some AI services and libraries like rytr, tensorflow, and nltk.  
+# pyPpAndPc
+pyPpAndPc, python-Paragraphing-and-PlagiarismChecker, had been planned to make a program 'paragraping scripts' and 'checking plagiarism in the scripts', at first.
+However, the program's main functions was replaced with 'AI Writing'
 
-Made for horiz.d's business
+This program writes various scripts or contents based on some user' keywords, Automatically, by utilizing pyautogui, some AI services.
+<br>
+
+This project Made for horiz.d's business
 
 ---
 
