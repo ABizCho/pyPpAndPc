@@ -7,6 +7,7 @@ import clipboard
 #PASTE in instant empty (short term)
 def paste_in(S) :
     clipboard.copy(S)
+    time.sleep(0.1)
 
     pyautogui.hotkey('ctrl','v')
     time.sleep(0.5)

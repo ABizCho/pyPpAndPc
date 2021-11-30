@@ -12,6 +12,7 @@ import mod_userInput as userInput
 import mod_choosen_NLP_extractKeyword_yake as ExKeyword
 import mod_choosen_NLP_extractSessionKeyword_yake as ExSessKeyword
 import mod_compAndSample_userKword_Aikword as compAndSampleKword
+import mod_docxContentFraming as Framing
 ######
 
 
@@ -74,16 +75,16 @@ t.sleep(3)
 #8.Make contents in rytr doc (repeat 4 time)
 PAG.tab(13)
 PAG.enter()
-t.sleep(8)
+t.sleep(9)
 
 PAG.tab(36)
 PAG.enter()
-t.sleep(8)
+t.sleep(9)
 
 for i in range(3) :
     PAG.tab(13)
     PAG.enter()
-    t.sleep(8)
+    t.sleep(9)
     # clickCv.clickRyteMore()
     # t.sleep(8)
 
@@ -127,29 +128,9 @@ PAG.enter()
 t.sleep(0.5)
 
 #2. word작성
-    #헤더
-PAG.paste_in("메인 키워드: {0}".format(sessionKeywordList[0][0].upper() + sessionKeywordList[0][1:]))
-PAG.enter()
-
-PAG.paste_in("제목: {0}".format(sessionTopic))
-PAG.enter()
-
-PAG.paste_in("연관 키워드: {0}, {1}, {2}, {3}, {4}".format(sample_5relKW[0],sample_5relKW[1],sample_5relKW[2],sample_5relKW[3],sample_5relKW[4]))
-
-PAG.enter()
-    #본문
-PAG.enter()
-PAG.paste_in(script)
-PAG.enter()
-PAG.enter()
-    #클로징
-closingMent = ["In this article, we dealt with '{0}'.".format(sessionTopic),"Next time, I'll come back with a better article.","Thanks for reading & Warmest regards"]
-for i in range(3) :
-    PAG.paste_in(closingMent[i])
-    pyautogui.press('space')
-    t.sleep(0.1)
-PAG.enter()
-
+docxContent = Framing.framing_docx(sessionKeywordList,sessionTopic,sample_5relKW,script)
+PAG.paste_in(docxContent)
+t.sleep(0.1)
 
 #3. 저장
 PAG.save()
