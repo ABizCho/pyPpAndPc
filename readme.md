@@ -14,7 +14,7 @@ This program is consist of 5 main processes
 
 #### PROC1 : Get Input from user
 Input is consist of sessionTopic and 5-sessionKeywords.
-<br>
+<br><br>
 
 #### PROC2 : Write script(article) on the basis of user inputs'
 Writting article automatically, based on user input, using rytr service controling window by using pyautogui.
