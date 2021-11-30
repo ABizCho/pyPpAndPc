@@ -8,7 +8,7 @@ This project made for horiz.d's business.
 
 
 ## Main Process
-This program is consist of 5 main functions
+This program is consist of 5 main processes
 <br>
 <br>
 
