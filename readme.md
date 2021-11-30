@@ -10,11 +10,10 @@ This project made for horiz.d's business.
 ## Main function
 This program is consist of 5 main functions
 
-'Get Input from user'
-
-'Write script(article) on the basis of user inputs'
-
-'Extract related-keywords from the AI article' 
+### (1) Get Input from user
+### (2) Write script(article) on the basis of user inputs'
+### (3) Extract related-keywords from the AI article' 
+### (4) Frame and save in an word, docx,file
 
 '' 
 
