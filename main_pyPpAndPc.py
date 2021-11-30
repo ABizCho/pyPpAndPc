@@ -107,7 +107,7 @@ mf.stepMsg(3,True)
 ai_related_kword = ExKeyword.keywordExtract_from_AIscript(script) # ai스크립트에서 추출된 연관키워드
 user_kword = ExSessKeyword.makeComparedKeywordList(sessionKeywordList) # 유저인풋 메인키워드
 
-sample_5relKW= compAndSampleKword.compKwordAndSample(ai_related_kword,user_kword)
+sample_5relKW= compAndSampleKword.compKwordAndSample(ai_related_kword,user_kword) 
 
 
 mf.stepMsg(3,False)
