@@ -9,11 +9,19 @@ This project made for horiz.d's business.
 
 ## Main function
 This program is consist of 5 main functions
+<br>
+Global library : pyautogui
 
-### (1) Get Input from user
-### (2) Write script(article) on the basis of user inputs'
-### (3) Extract related-keywords from the AI article' 
-### (4) Frame and save in an word, docx,file
+### PROC1 : Get Input from user
+
+### PROC2 : Write script(article) on the basis of user inputs'
+Process library - rytr 
+
+### PROC3 : Extract related-keywords from the AI article' 
+Process library - NLP( Yake )
+
+### PROC4 : Frame and save in an word, docx,file
+
 
 '' 
 
