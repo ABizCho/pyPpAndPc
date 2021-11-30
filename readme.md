@@ -6,8 +6,6 @@ However, the program's main functions was replaced with 'AI Writing'.
 
 This project made for horiz.d's business.
 
----
-
 ## Main function
 This program is consist of 5 main functions
 
