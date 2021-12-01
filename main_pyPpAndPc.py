@@ -2,7 +2,6 @@
 import clipboard    #pyautogui를 이용한 타이핑시 한/영 문제 대안으로 os클립보드 제어
 import time as t
 import datetime
-
 import pyautogui
 #
 import mod_myPyAutoGui as PAG
@@ -15,139 +14,142 @@ import mod_compAndSample_userKword_Aikword as compAndSampleKword
 import mod_docxContentFraming as Framing
 ######
 
-
-#스타트 메시지
-mf.startMsg()
-
-
-###### PROC1 사용자 input ######
-mf.stepMsg(1,True)
-
-sessionTopic = input('Type Your Main Topic : ')
-sessionKeywordList = [] #사용자에게서 받는 모든 session keyword는 소문자로 작성하거나 / 소문자로 변경해야한다. : 파생원고로부터 연관키워드 선정 시 비교=>중복제거 수행예정
-
-sessionKeywordList = userInput.userInput()
-
-sessionKeyword = "{0}, {1}, {2}, {3}, {4}".format(sessionKeywordList[0],sessionKeywordList[1],sessionKeywordList[2],sessionKeywordList[3],sessionKeywordList[4])
-print(sessionKeyword)
+def ppap(sessionTopic,sessionKeywordList) :
+    #스타트 메시지
+    print("")
+    mf.startMsg()
 
 
-mf.stepMsg(1,False)
-#################################
+    ###### PROC1 사용자 input ######
+    mf.stepMsg(1,True)
+
+    # sessionTopic = input('Type Your Main Topic : ')
+    # sessionKeywordList = [] #사용자에게서 받는 모든 session keyword는 소문자로 작성하거나 / 소문자로 변경해야한다. : 파생원고로부터 연관키워드 선정 시 비교=>중복제거 수행예정
+
+    # sessionKeywordList = userInput.userInput()
+
+    sessionKeyword = "{0}, {1}, {2}, {3}, {4}".format(sessionKeywordList[0],sessionKeywordList[1],sessionKeywordList[2],sessionKeywordList[3],sessionKeywordList[4])
+    # print(sessionKeyword)
+
+
+    mf.stepMsg(1,False)
+    #################################
 
 
 
 
 
-###### PROC2 ryte process #######
-mf.stepMsg(2,True)
+    ###### PROC2 ryte process #######
+    mf.stepMsg(2,True)
+    t.sleep(0.5)
 
-#1. rytr 오픈
-PAG.win()
-PAG.paste_win('rytr')
+    #1. rytr 오픈
+    PAG.win()
+    t.sleep(0.1)
+    PAG.paste_win('rytr')
 
-#2. 기존 세션토픽 삭제
-PAG.select_all()
-PAG.delete()
+    #2. 기존 세션토픽 삭제
+    PAG.select_all()
+    PAG.delete()
 
-#3.뉴 세션토픽 입력
-PAG.paste_in(sessionTopic)
+    #3.뉴 세션토픽 입력
+    PAG.paste_in(sessionTopic)
 
-#4.세션키워드 박스로 이동
-PAG.tab(1)
+    #4.세션키워드 박스로 이동
+    PAG.tab(1)
 
-#5.뉴 세션키워드 삭제
-PAG.select_all()
-PAG.delete()
+    #5.뉴 세션키워드 삭제
+    PAG.select_all()
+    PAG.delete()
 
-#6. 뉴 세션키워드 입력
-PAG.paste_in(sessionKeyword)
+    #6. 뉴 세션키워드 입력
+    PAG.paste_in(sessionKeyword)
 
-#7. rytr 새문서 생성 및 오픈
-PAG.tab(7)
-PAG.enter()
-t.sleep(0.5)
+    #7. rytr 새문서 생성 및 오픈
+    PAG.tab(7)
+    PAG.enter()
+    t.sleep(0.5)
 
-PAG.paste_in(str(datetime.date.today()))
-PAG.enter()
-t.sleep(3)
+    PAG.paste_in(str(datetime.date.today()))
+    PAG.enter()
+    t.sleep(3)
 
-#8.Make contents in rytr doc (repeat 4 time)
-PAG.tab(13)
-PAG.enter()
-t.sleep(9)
-
-PAG.tab(36)
-PAG.enter()
-t.sleep(9)
-
-for i in range(3) :
+    #8.Make contents in rytr doc (repeat 4 time)
     PAG.tab(13)
     PAG.enter()
     t.sleep(9)
-    # clickCv.clickRyteMore()
-    # t.sleep(8)
+
+    PAG.tab(36)
+    PAG.enter()
+    t.sleep(9)
+
+    for i in range(3) :
+        PAG.tab(13)
+        PAG.enter()
+        t.sleep(9)
+        # clickCv.clickRyteMore()
+        # t.sleep(8)
 
 
-#9.copy the script
-PAG.select_all()
-PAG.copy()
-script = clipboard.paste()
-t.sleep(0.1)
+    #9.copy the script
+    PAG.select_all()
+    PAG.copy()
+    script = clipboard.paste()
+    t.sleep(0.1)
 
-PAG.quit()
+    PAG.quit()
 
-mf.stepMsg(2,False)
-##################################################
-
-
-##### PROC3 연관키워드 선별,추출 using NLP #########
-mf.stepMsg(3,True)
+    mf.stepMsg(2,False)
+    ##################################################
 
 
-ai_related_kword = ExKeyword.keywordExtract_from_AIscript(script) # ai스크립트에서 추출된 연관키워드
-user_kword = ExSessKeyword.makeComparedKeywordList(sessionKeywordList) # 유저인풋 메인키워드
-
-sample_5relKW= compAndSampleKword.compKwordAndSample(ai_related_kword,user_kword) 
+    ##### PROC3 연관키워드 선별,추출 using NLP #########
+    mf.stepMsg(3,True)
 
 
-mf.stepMsg(3,False)
-###################################################
+    ai_related_kword = ExKeyword.keywordExtract_from_AIscript(script) # ai스크립트에서 추출된 연관키워드
+    user_kword = ExSessKeyword.makeComparedKeywordList(sessionKeywordList) # 유저인풋 메인키워드
 
-###### PROC4 WORD파일 작성 #############
-mf.stepMsg(4,True)
-
-
-#1. word 오픈 & 새 문서
-PAG.win()
-PAG.paste_in('word')
-PAG.enter()
-t.sleep(4)
-
-PAG.enter()
-t.sleep(0.5)
-
-#2. word작성
-docxContent = Framing.framing_docx(sessionKeywordList,sessionTopic,sample_5relKW,script)
-PAG.paste_in(docxContent)
-t.sleep(0.1)
-
-#3. 저장
-PAG.save()
-
-dateF = datetime.date.today().strftime("%y.%m.%d")
-PAG.paste_in("조성우_영문원고작성({0})_{1}".format(dateF,sessionKeywordList[0]))
-PAG.enter()
-t.sleep(0.5)
-
-PAG.quit()
-t.sleep(0.5)
-
-mf.stepMsg(4,False)
-######################################
+    sample_5relKW= compAndSampleKword.compKwordAndSample(ai_related_kword,user_kword) 
 
 
-mf.finishMsg()
+    mf.stepMsg(3,False)
+    ###################################################
+
+    ###### PROC4 WORD파일 작성 #############
+    mf.stepMsg(4,True)
+
+
+    #1. word 오픈 & 새 문서
+    PAG.win()
+    PAG.paste_in('word')
+    PAG.enter()
+    t.sleep(4)
+
+    PAG.enter()
+    t.sleep(0.5)
+
+    #2. word작성
+    docxContent = Framing.framing_docx(sessionKeywordList,sessionTopic,sample_5relKW,script)
+    PAG.paste_in(docxContent)
+    t.sleep(0.1)
+
+    #3. 저장
+    PAG.save()
+
+    dateF = datetime.date.today().strftime("%y.%m.%d")
+    PAG.paste_in("조성우_영문원고작성({0})_{1}".format(dateF,sessionKeywordList[0]))
+    PAG.enter()
+    t.sleep(0.5)
+
+    PAG.quit()
+    t.sleep(0.5)
+
+    mf.stepMsg(4,False)
+    ######################################
+
+
+    mf.finishMsg()
 
 
 

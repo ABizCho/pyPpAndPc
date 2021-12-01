@@ -2,7 +2,7 @@ import pyautogui
 import time
 import clipboard
 
-#print(pyautogui.KEYBOARD_KEYS)
+# print(pyautogui.KEYBOARD_KEYS)
 
 #PASTE in instant empty (short term)
 def paste_in(S) :
