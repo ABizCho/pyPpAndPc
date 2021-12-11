@@ -3,7 +3,7 @@ pyPpAndPc, python-Paragraphing-and-PlagiarismChecker, had been planned to make a
 However, the program's main functions were replaced with 'AI Writing'.
 <br>
 
-This project was made for horiz.d's business.
+This project was planned to support horiz.d's business.
 <br><br>
 
 
